@@ -15,6 +15,12 @@
     <h1>Vídeo - <?php echo $aula_info['nome']; ?></h1>
     <iframe id="video" src="//player.vimeo.com/video/<?php echo $aula_info['url'];?>" style="width:100%;" frameborder="0"></iframe>
     <?php echo $aula_info['descricao'];?>
+    <?php if($aula_info['assistidos'] >= 1):?>
+        Esta aula já foi assistida
+    <?php else: ?>
+        <button id="ButtonMarcarAula" data-id="<?php echo $aula_info['id'];?>">Marcar como assistida</button>
+        <?php echo $aula_info['id'];?>
+    <?php endif; ?>
     <hr>
     <h3>Duvidas? Deixe nos comentários</h3>
     <form method="POST" class="form_duvida">

@@ -4,6 +4,7 @@ let topoCursoInfo = document.querySelector('.cursoinfo');
 let topoTemplate = document.querySelector('.topo');
 let buttonDuvida = document.getElementById('buttonDuvida');
 let video = document.getElementById('video');
+let ButtonMarcarAula = document.getElementById('ButtonMarcarAula');
 
 function updateArea(){
     let heightTopoCurso = window.getComputedStyle(topoCursoInfo).height.replace('px', '');
@@ -22,4 +23,17 @@ function updateArea(){
 }
 setInterval(updateArea, 100);
 
-buttonDuvida.addEventListener("click", function(){window.alert('duvida enviada com sucesso!')});
+buttonDuvida.addEventListener("click", function(){
+    window.alert('duvida enviada com sucesso!')});
+
+function async(){
+
+}
+
+ButtonMarcarAula.addEventListener("click", async function(){
+    let id = ButtonMarcarAula.getAttribute('data-id');
+
+    ButtonMarcarAula.style.display='none';
+
+    await fetch("/mvc/ajax/marcar_assistido/"+id);
+});

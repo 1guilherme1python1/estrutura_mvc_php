@@ -38,7 +38,8 @@ class CursosController extends Controller{
             'curso'=>array(),
             'modulos'=>array(),
             'info' =>array(),
-            'aula_info'=>array()
+            'aula_info'=>array(),
+            'resposta',
         );
         $aluno = new Alunos();
         $aluno->setAluno($_SESSION['lgaluno']);
@@ -61,6 +62,9 @@ class CursosController extends Controller{
                 $view = 'curso_aula_video';
             } else {
                 $view = 'curso_aula_quest';
+                if(!isset($_SESSION['quest'.$id_aula])){
+                $_SESSION['quest'.$id_aula] = 1;
+                }
             }
             
             if(isset($_POST['duvida']) && !empty($_POST['duvida'])){
@@ -75,6 +79,12 @@ class CursosController extends Controller{
                 
                 if($opcao == $dados['aula_info']['resposta']){
                     $dados['resposta'] = true;
+                } else {
+                    $dados['resposta'] = false;
+                }
+                $_SESSION['quest'.$id_aula]++;
+                if($_SESSION['quest'.$id_aula]===2){
+                    
                 }
             }
 

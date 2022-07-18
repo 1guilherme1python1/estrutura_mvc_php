@@ -13,8 +13,14 @@
 </div>
 <div class="curso_right">
     <h1>Aula Questionário</h1>
+    <?php
+    if($_SESSION['quest'.$aula_info['id_aula']]>2){
+        echo "você atingiu o limite de tentativas";
+    } else {
+        echo 'Tentativas: '.$_SESSION['quest'.$aula_info['id_aula']].' de 2';
+    ?>
     <h3><?php echo $aula_info['pergunta'];?></h3>
-
+<form action="" method="POST">
     <input type="radio" name="opcao" value="1" id="opcao1"/>
     <label for="opcao1"><?php echo $aula_info['opcao1']?></label><br><br>
 
@@ -28,4 +34,14 @@
     <label for="opcao4"><?php echo $aula_info['opcao4']?></label><br><br>
 
     <input type="submit" value="Enviar Resposta">
+</form>
+    <?php if(isset($resposta)){
+        if($resposta === true){
+            echo "Resposta Correta";
+        } else {
+            echo "Resposta Errada"; 
+        }
+    } 
+    ?>
+    <?php } ?>
 </div>
